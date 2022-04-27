@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMDB Movies</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-amber.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="svganchor" class="graph centered">
+    </div>
+    <div id="checkboxes" class="centered">
+    <strong><span id="yearTag" style="position:relative; top: 3px">2022</span></strong>
+    </div>
+
+    <div class="slidecontainer">
+        <input type="range" width="100%" min="1920" max="2021" value="1920" class="slider" id="myRange">
+    </div>
+
+</body>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="beeswarm.js"></script>
+
+</html>
