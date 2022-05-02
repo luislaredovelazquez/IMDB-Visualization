@@ -25,6 +25,23 @@ chartState.measure = Count.score;
 chartState.scale = Scales.lin;
 chartState.legend = Legend.score;
 
+let colors = d3.scaleOrdinal()
+    .domain(["Action", "Adventure", "Animation", "Biography", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Mystery", "Thriller", "Western"])
+    .range(['#D81B60','#1976D2','#388E3C','#FBC02D','#455A64','#D81B69','#1976D9','#388E39','#FBC029','#E64A10','#455A69','#E64A17','#455A63']);
+
+    d3.select("#actionColor").style("color", colors("Action"));
+    d3.select("#adventureColor").style("color", colors("Adventure"));
+    d3.select("#animationColor").style("color", colors("Animation"));
+    d3.select("#biographyColor").style("color", colors("Biography"));
+    d3.select("#crimeColor").style("color", colors("Crime"));
+    d3.select("#dramaColor").style("color", colors("Drama"));
+    d3.select("#familyColor").style("color", colors("Family"));
+    d3.select("#fantasyColor").style("color", colors("Fantasy"));
+    d3.select("#film-noirColor").style("color", colors("Film-Noir"));
+    d3.select("#horrorColor").style("color", colors("Horror"));
+    d3.select("#mysteryColor").style("color", colors("Mystery"));    
+    d3.select("#thrillerColor").style("color", colors("Thriller"));
+    d3.select("#westernColor").style("color", colors("Western"));     
 
 let svg = d3.select("#svganchor")
     .append("svg")
@@ -51,7 +68,7 @@ let tooltip = d3.select("#svganchor").append("div")
 // Load and process data
 let contador=0;
 
-d3.csv('http://localhost:3000/imdb_top_1000.csv').then(function (data) {
+d3.tsv('http://localhost:3000/imdb_top_1000_clean.tsv').then(function (data) {
 
    
 
@@ -65,8 +82,9 @@ d3.csv('http://localhost:3000/imdb_top_1000.csv').then(function (data) {
     redraw();
 
 
-    // Trigger filter function whenever checkbox is ticked/unticked
-    d3.selectAll("input").on("change", filter);
+    
+    d3.selectAll(".slidecontainer").on("change", filter);
+    d3.selectAll(".genres").on("change", genrefilter);
 
     function redraw() {
 
@@ -120,7 +138,7 @@ d3.csv('http://localhost:3000/imdb_top_1000.csv').then(function (data) {
             .attr("cx", 0)
             .attr("cy", (height / 2) - margin.bottom / 2)
             .attr("r", 4)
-            .attr("fill", "#000000")
+            .attr("fill", function(d){ return colors(d.Genre)})
             .merge(moviesCircles)
             .transition()
             .duration(2000)
@@ -154,6 +172,42 @@ d3.csv('http://localhost:3000/imdb_top_1000.csv').then(function (data) {
     }
 
     // Filter data based on which checkboxes are ticked
+function genrefilter() {
+
+    function getCheckedBoxes(checkboxName) {
+
+        let checkboxes = d3.selectAll(checkboxName).nodes();
+        let checkboxesChecked = [];
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i].defaultValue);
+            }
+        }
+        return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+    }
+
+    let checkedBoxes = getCheckedBoxes(".genres");
+
+    let newData = [];
+
+    if (checkedBoxes == null) {
+        dataSet = newData;
+        redraw();
+        return;
+    }
+
+    for (let i = 0; i < checkedBoxes.length; i++){
+        let newArray = data.filter(function(d) {
+            return d.Genre === checkedBoxes[i];
+        });
+        Array.prototype.push.apply(newData, newArray);
+    }
+
+    dataSet = newData;
+    redraw();
+}
+
+    // Filter data based on which checkboxes are ticked
     function filter() {
         
         let newData = [];
@@ -180,3 +234,7 @@ d3.csv('http://localhost:3000/imdb_top_1000.csv').then(function (data) {
 }).catch(function (error) {
     if (error) throw error;
 });
+
+
+
+
