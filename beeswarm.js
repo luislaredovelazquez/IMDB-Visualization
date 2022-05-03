@@ -68,7 +68,9 @@ let tooltip = d3.select("#svganchor").append("div")
 // Load and process data
 let contador=0;
 
-d3.tsv('http://localhost:3000/imdb_top_1000_clean.tsv').then(function (data) {
+//LUIS: you can change this later if you want to see all the movies, the short csv file is just faster to load for developing
+//d3.tsv('http://localhost:3000/imdb_top_1000_clean.tsv').then(function (data) {
+d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
 
    
 
