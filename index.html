@@ -96,7 +96,10 @@
 
 </div>
 
-    <div style="height: 500px; width: 100%; background-color: blue;">
+    <div style="height: 500px; width: 100%; background-color: blue; text-align: center;">
+		<!-- Container for graphs that react to selected movie -->
+	    <div id="linked-graphs" >
+		</div>
     </div>
 
 
@@ -122,6 +125,9 @@
 </body>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<!-- Separate code files included for linked graphs -->
+<script src="director-plot.js"></script>
+<script src="star-plot.js"></script>
 <script src="beeswarm.js"></script>
 <script>
     var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {})

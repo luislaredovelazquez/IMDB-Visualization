@@ -75,7 +75,34 @@ d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
    
 
     let dataSet = data;
+	
+	// Create the initial director plot, requires the parent div id as an argument
+	let directorBP = new DirectorBarPlot("#linked-graphs");
 
+	// Create the plot for showing movie's stars. To create the initial graph, a list of all movie stars in the material is required
+	let stars = [];
+	for(var i=0; i < data.length; i++) {
+		if(data[i]['Star1'] != null && data[i]['Star1'].length > 0) {
+			stars.push(data[i]['Star1']);
+		}
+		if(data[i]['Star2'] != null && data[i]['Star2'].length > 0) {
+			stars.push(data[i]['Star2']);
+		}
+		if(data[i]['Star3'] != null && data[i]['Star3'].length > 0) {
+			stars.push(data[i]['Star3']);
+		}
+		if(data[i]['Star4'] != null && data[i]['Star4'].length > 0) {
+			stars.push(data[i]['Star4']);
+		}
+	}
+	
+	stars = stars.filter(function(value, index, self) {
+			return self.indexOf(value) === index;
+		}
+	);
+
+	let starsPlot = new StarsPlot("#linked-graphs", stars);
+	
     // Set chart domain max value to the highest score value in data set
     xScale.domain(d3.extent(data, function (d) {
         return +d.Meta_score;
@@ -169,7 +196,35 @@ d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
         }).on("mouseout", function(_) {
             tooltip.style("opacity", 0);
             xLine.attr("opacity", 0);
-        });
+        })
+		// Update director and star plots when a movie in main plot is clicked
+		.on("click", function(d1) {
+			
+			// For director plot, we need to gather the number of their movies per decade
+			// This information is update to plot
+			let aggr = [];
+			for(let y=1920; y <= 2020; y+=10) {
+				aggr.push([y,0, []]);
+			}
+			
+			for(let i=0; i < data.length; i++) {
+				let y = parseInt(data[i]["Released_Year"]);
+				let dec = Math.floor(y/10) * 10;
+				if(d1.Director == data[i]["Director"]) {
+					aggr[(dec - 1920) / 10][1] += 1;
+					aggr[(dec - 1920) / 10][2].push(data[i]["Series_Title"]);
+				}
+			}
+			directorBP.update(d1.Director, aggr);
+			
+			// For star plot, we need to get stars in the movie and update it to star plot
+			let movieStars = [d1["Star1"], d1["Star2"], d1["Star3"], d1["Star4"]];
+			movieStars = movieStars.filter(function(value, index, self) {
+				return (value != null && value.length > 0)
+			});
+
+			starsPlot.update(movieStars);
+		});
 
     }
 
