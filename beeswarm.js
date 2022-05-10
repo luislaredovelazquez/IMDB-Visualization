@@ -1,6 +1,6 @@
 //Main code taken from: Tia Gottlieb - https://morioh.com/p/86a515eb6629 
-let height = 800;
-let width = 1300;
+let height = 200;
+let width = 1100;
 let margin = ({top: 0, right: 40, bottom: 34, left: 40});
 
 

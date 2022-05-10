@@ -14,72 +14,93 @@
 </head>
 
 <body>
+    <div class="main_container">
+    <div class="container" style="height: 50%;">
+    
+     <div style="width: 13%;">
+
+        <div id="checkboxes" class="centered" data-intro="You can filter the movies by genre" data-step='2'>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Action" class="mdl-checkbox__input genres" checked="">Action
+                <span class="mdl-checkbox__label" id="actionColor" style="font-size: 20px; color: #D81B60;">&#9679;&nbsp;&nbsp;</span>
+            </label> <br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Adventure" class="mdl-checkbox__input genres" checked="">Adventure
+                <span class="mdl-checkbox__label" id="adventureColor" style="font-size: 20px; color: #1976D2;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Animation" class="mdl-checkbox__input genres" checked="">Animation
+                <span class="mdl-checkbox__label" id="animationColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Biography" class="mdl-checkbox__input genres" checked="">Biography
+                <span class="mdl-checkbox__label" id="biographyColor" style="font-size: 20px; color: #FBC02D;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Crime" class="mdl-checkbox__input genres" checked="">Crime
+                <span class="mdl-checkbox__label" id="crimeColor" style="font-size: 20px; color: #D81B69;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Drama" class="mdl-checkbox__input genres" checked="">Drama
+                <span class="mdl-checkbox__label" id="dramaColor" style="font-size: 20px; color: #1976D9;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Family" class="mdl-checkbox__input genres" checked="">Family
+                <span class="mdl-checkbox__label" id="familyColor" style="font-size: 20px; color: #388E39;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Fantasy" class="mdl-checkbox__input genres" checked="">Fantasy
+                <span class="mdl-checkbox__label" id="fantasyColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Film-Noir" class="mdl-checkbox__input genres" checked="">Film-Noir
+                <span class="mdl-checkbox__label" id="film-noirColor" style="font-size: 20px; color: #FBC029;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Horror" class="mdl-checkbox__input genres" checked="">Horror
+                <span class="mdl-checkbox__label" id="horrorColor" style="font-size: 20px; color: #E64A10;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Mystery" class="mdl-checkbox__input genres" checked="">Mystery
+                <span class="mdl-checkbox__label" id="mysteryColor" style="font-size: 20px; color: #455A69;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Thriller" class="mdl-checkbox__input genres" checked="">Thriller
+                <span class="mdl-checkbox__label" id="thrillerColor" style="font-size: 20px; color: #E64A17;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" value="Western" class="mdl-checkbox__input genres" checked="">Western
+                <span class="mdl-checkbox__label" id="westernColor" style="font-size: 20px; color: #455A63;">&#9679;&nbsp;&nbsp;</span>
+            </label><br/>
+        </div>
+
+     </div>   
+
+
+    <div  style="width: 85%;">
     <div id="svganchor" class="graph centered" data-intro="Hover over the dots to see information about each movie" data-step='1'>
-    </div>
-  
-    <div id="checkboxes" class="centered" data-intro="You can filter the movies by genre" data-step='2'>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Action" class="mdl-checkbox__input genres" checked="">Action
-            <span class="mdl-checkbox__label" id="actionColor" style="font-size: 20px; color: #D81B60;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Adventure" class="mdl-checkbox__input genres" checked="">Adventure
-            <span class="mdl-checkbox__label" id="adventureColor" style="font-size: 20px; color: #1976D2;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Animation" class="mdl-checkbox__input genres" checked="">Animation
-            <span class="mdl-checkbox__label" id="animationColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Biography" class="mdl-checkbox__input genres" checked="">Biography
-            <span class="mdl-checkbox__label" id="biographyColor" style="font-size: 20px; color: #FBC02D;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Crime" class="mdl-checkbox__input genres" checked="">Crime
-            <span class="mdl-checkbox__label" id="crimeColor" style="font-size: 20px; color: #D81B69;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Drama" class="mdl-checkbox__input genres" checked="">Drama
-            <span class="mdl-checkbox__label" id="dramaColor" style="font-size: 20px; color: #1976D9;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Family" class="mdl-checkbox__input genres" checked="">Family
-            <span class="mdl-checkbox__label" id="familyColor" style="font-size: 20px; color: #388E39;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Fantasy" class="mdl-checkbox__input genres" checked="">Fantasy
-            <span class="mdl-checkbox__label" id="fantasyColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Film-Noir" class="mdl-checkbox__input genres" checked="">Film-Noir
-            <span class="mdl-checkbox__label" id="film-noirColor" style="font-size: 20px; color: #FBC029;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Horror" class="mdl-checkbox__input genres" checked="">Horror
-            <span class="mdl-checkbox__label" id="horrorColor" style="font-size: 20px; color: #E64A10;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Mystery" class="mdl-checkbox__input genres" checked="">Mystery
-            <span class="mdl-checkbox__label" id="mysteryColor" style="font-size: 20px; color: #455A69;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Thriller" class="mdl-checkbox__input genres" checked="">Thriller
-            <span class="mdl-checkbox__label" id="thrillerColor" style="font-size: 20px; color: #E64A17;">&#9679;&nbsp;&nbsp;</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-            <input type="checkbox" value="Western" class="mdl-checkbox__input genres" checked="">Western
-            <span class="mdl-checkbox__label" id="westernColor" style="font-size: 20px; color: #455A63;">&#9679;&nbsp;&nbsp;</span>
-        </label>
     </div>
 
     <div class="centered" data-intro="Here you can see the year the movies where released in" data-step='3'>
-    <strong><span id="yearTag" style="position:relative; top: 3px">2022</span></strong>
+        <strong><span id="yearTag" style="position:relative; top: 3px">2022</span></strong>
+        </div>
+    
+        <div class="slidecontainer" data-intro="Use the slider to move across time" data-step='4'>
+            <input type="range" width="100%" min="1920" max="2021" value="1920" class="slider" id="myRange">
+        </div>
+
+    </div> 
+
+  <!--  <div style="height: 100px; width: 80%; background-color: #D81B60;">Hola</div> -->
+    
+
+</div>
+
+    <div style="height: 500px; width: 100%; background-color: blue;">
     </div>
 
-    <div class="slidecontainer" data-intro="Use the slider to move across time" data-step='4'>
-        <input type="range" width="100%" min="1920" max="2021" value="1920" class="slider" id="myRange">
-    </div>
 
+</div>
     <!-- Modal Fullscreen -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog modal-fullscreen" role="document">
