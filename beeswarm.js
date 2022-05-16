@@ -1,8 +1,7 @@
 //Main code taken from: Tia Gottlieb - https://morioh.com/p/86a515eb6629 
-let height = 200;
-let width = 1100;
+let height = 250;
+let width = 1300;
 let margin = ({top: 0, right: 40, bottom: 34, left: 40});
-
 
 // Data structure describing chart scales
 let Scales = {
@@ -69,15 +68,15 @@ let tooltip = d3.select("#svganchor").append("div")
 let contador=0;
 
 //LUIS: you can change this later if you want to see all the movies, the short csv file is just faster to load for developing
-//d3.tsv('http://localhost:3000/imdb_top_1000_clean.tsv').then(function (data) {
-d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
-
-   
+d3.tsv('http://localhost:3000/imdb_top_1000_clean.tsv').then(function (data) {
+// d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
 
     let dataSet = data;
 	
 	// Create the initial director plot, requires the parent div id as an argument
-	let directorBP = new DirectorBarPlot("#linked-graphs");
+    let directorBP = new DirectorBarPlot("#director-plot");
+
+    let incomePlot = new IncomePlot();
 
 	// Create the plot for showing movie's stars. To create the initial graph, a list of all movie stars in the material is required
 	let stars = [];
@@ -101,7 +100,8 @@ d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
 		}
 	);
 
-	let starsPlot = new StarsPlot("#linked-graphs", stars);
+	// let starsPlot = new StarsPlot("#linked-graphs", stars);
+    let starsPlot = new StarsPlot("#stars-plot", stars);
 	
     // Set chart domain max value to the highest score value in data set
     xScale.domain(d3.extent(data, function (d) {
@@ -110,8 +110,6 @@ d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
 
     redraw();
 
-
-    
     d3.selectAll(".slidecontainer").on("change", filter);
     d3.selectAll(".genres").on("change", genrefilter);
 
@@ -199,23 +197,30 @@ d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
         })
 		// Update director and star plots when a movie in main plot is clicked
 		.on("click", function(d1) {
-			
 			// For director plot, we need to gather the number of their movies per decade
 			// This information is update to plot
 			let aggr = [];
+            var incomeMovies = [];
+            var incomes = [];
 			for(let y=1920; y <= 2020; y+=10) {
 				aggr.push([y,0, []]);
+                incomeMovies.push([y,0,"",""]);
 			}
-			
 			for(let i=0; i < data.length; i++) {
 				let y = parseInt(data[i]["Released_Year"]);
 				let dec = Math.floor(y/10) * 10;
 				if(d1.Director == data[i]["Director"]) {
 					aggr[(dec - 1920) / 10][1] += 1;
 					aggr[(dec - 1920) / 10][2].push(data[i]["Series_Title"]);
+                    var nocommas = parseInt(data[i]["Gross"].replace(/,/g, ''));
+                    incomes.push(nocommas)
+                    incomeMovies[(dec - 1920) / 10][1]=nocommas;
+                    incomeMovies[(dec - 1920) / 10][2]=data[i]["Series_Title"];
+                    incomeMovies[(dec - 1920) / 10][3]=data[i]["Gross"];
 				}
 			}
 			directorBP.update(d1.Director, aggr);
+            incomePlot.update(d1.Director, incomeMovies, incomes);
 			
 			// For star plot, we need to get stars in the movie and update it to star plot
 			let movieStars = [d1["Star1"], d1["Star2"], d1["Star3"], d1["Star4"]];

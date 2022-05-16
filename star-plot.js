@@ -20,12 +20,18 @@ function StarsPlot(parentId, stars) {
 		.style("font-size", "5px");
 	
 	// Create header for graph 	
+	// this.svg.append("text")
+	// 	.attr("x", 0)
+	// 	.attr("y", 17)
+	// 	.attr("text-anchor", "start")
+	// 	.style("font-size", "16px")
+	// 	.text("Stars featured in film");
+
 	this.svg.append("text")
 		.attr("x", 0)
 		.attr("y", 17)
 		.attr("text-anchor", "start")
-		.style("font-size", "16px")
-		.text("Stars featured in film");
+		.style("font-size", "16px");
 }
 
 StarsPlot.prototype.update = function(data) {	

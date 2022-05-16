@@ -67,8 +67,9 @@ DirectorBarPlot.prototype.update = function(directorName, data) {
 		.attr("y", function(d) { return self.yScale(0); })
 		.attr("width", self.xScale.bandwidth())
 		.attr("height", 0)
-		.attr("fill", "#69b3a2")
+		.attr("fill", "#1976D2")
 		.on('mouseover', function(d) {
+			// console.log(d[2]);
 			var tooltipDiv = d3.select("#directorTooltip"); 
 			tooltipDiv.transition()
 				.duration(500);

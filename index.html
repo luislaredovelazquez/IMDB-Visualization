@@ -11,97 +11,173 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet"> 
     <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 </head>
 
 <body>
-    <div class="main_container">
-    <div class="container" style="height: 50%;">
-    
-     <div style="width: 13%;">
 
-        <div id="checkboxes" class="centered" data-intro="You can filter the movies by genre" data-step='2'>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Action" class="mdl-checkbox__input genres" checked="">Action
-                <span class="mdl-checkbox__label" id="actionColor" style="font-size: 20px; color: #D81B60;">&#9679;&nbsp;&nbsp;</span>
-            </label> <br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Adventure" class="mdl-checkbox__input genres" checked="">Adventure
-                <span class="mdl-checkbox__label" id="adventureColor" style="font-size: 20px; color: #1976D2;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Animation" class="mdl-checkbox__input genres" checked="">Animation
-                <span class="mdl-checkbox__label" id="animationColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Biography" class="mdl-checkbox__input genres" checked="">Biography
-                <span class="mdl-checkbox__label" id="biographyColor" style="font-size: 20px; color: #FBC02D;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Crime" class="mdl-checkbox__input genres" checked="">Crime
-                <span class="mdl-checkbox__label" id="crimeColor" style="font-size: 20px; color: #D81B69;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Drama" class="mdl-checkbox__input genres" checked="">Drama
-                <span class="mdl-checkbox__label" id="dramaColor" style="font-size: 20px; color: #1976D9;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Family" class="mdl-checkbox__input genres" checked="">Family
-                <span class="mdl-checkbox__label" id="familyColor" style="font-size: 20px; color: #388E39;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Fantasy" class="mdl-checkbox__input genres" checked="">Fantasy
-                <span class="mdl-checkbox__label" id="fantasyColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Film-Noir" class="mdl-checkbox__input genres" checked="">Film-Noir
-                <span class="mdl-checkbox__label" id="film-noirColor" style="font-size: 20px; color: #FBC029;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Horror" class="mdl-checkbox__input genres" checked="">Horror
-                <span class="mdl-checkbox__label" id="horrorColor" style="font-size: 20px; color: #E64A10;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Mystery" class="mdl-checkbox__input genres" checked="">Mystery
-                <span class="mdl-checkbox__label" id="mysteryColor" style="font-size: 20px; color: #455A69;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Thriller" class="mdl-checkbox__input genres" checked="">Thriller
-                <span class="mdl-checkbox__label" id="thrillerColor" style="font-size: 20px; color: #E64A17;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" value="Western" class="mdl-checkbox__input genres" checked="">Western
-                <span class="mdl-checkbox__label" id="westernColor" style="font-size: 20px; color: #455A63;">&#9679;&nbsp;&nbsp;</span>
-            </label><br/>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Main container -->
+    <div class="container-fluid">
+        
+        <!-- Top row -->
+        <div class="row p-2 mb-2">
+            <nav class="navbar navbar-light bg-light">
+                <span class="navbar-brand mb-0 h1">📽️ 1000 IMDb Movies </span>
+                <span class="navbar-brand">HTI.500 Project</span>
+            </nav>
         </div>
 
-     </div>   
+        <div class="row">
+            <!-- Genre filters -->
+            <div class="col">  
 
+                <div class="card text-white bg-dark h-100">
+                    <div class="card-body">
+                      <h5 class="card-title">Movie genres</h5>
+                      
+                        <div id="checkboxes" class="" data-intro="You can filter the movies by genre" data-step='2'>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Action" class="mdl-checkbox__input genres" checked="">Action
+                                <span class="mdl-checkbox__label" id="actionColor" style="font-size: 20px; color: #D81B60;">&#9679;&nbsp;&nbsp;</span>
+                            </label> <br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Adventure" class="mdl-checkbox__input genres" checked="">Adventure
+                                <span class="mdl-checkbox__label" id="adventureColor" style="font-size: 20px; color: #1976D2;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Animation" class="mdl-checkbox__input genres" checked="">Animation
+                                <span class="mdl-checkbox__label" id="animationColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Biography" class="mdl-checkbox__input genres" checked="">Biography
+                                <span class="mdl-checkbox__label" id="biographyColor" style="font-size: 20px; color: #FBC02D;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Crime" class="mdl-checkbox__input genres" checked="">Crime
+                                <span class="mdl-checkbox__label" id="crimeColor" style="font-size: 20px; color: #D81B69;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Drama" class="mdl-checkbox__input genres" checked="">Drama
+                                <span class="mdl-checkbox__label" id="dramaColor" style="font-size: 20px; color: #1976D9;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Family" class="mdl-checkbox__input genres" checked="">Family
+                                <span class="mdl-checkbox__label" id="familyColor" style="font-size: 20px; color: #388E39;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Fantasy" class="mdl-checkbox__input genres" checked="">Fantasy
+                                <span class="mdl-checkbox__label" id="fantasyColor" style="font-size: 20px; color: #388E3C;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Film-Noir" class="mdl-checkbox__input genres" checked="">Film-Noir
+                                <span class="mdl-checkbox__label" id="film-noirColor" style="font-size: 20px; color: #FBC029;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Horror" class="mdl-checkbox__input genres" checked="">Horror
+                                <span class="mdl-checkbox__label" id="horrorColor" style="font-size: 20px; color: #E64A10;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Mystery" class="mdl-checkbox__input genres" checked="">Mystery
+                                <span class="mdl-checkbox__label" id="mysteryColor" style="font-size: 20px; color: #455A69;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Thriller" class="mdl-checkbox__input genres" checked="">Thriller
+                                <span class="mdl-checkbox__label" id="thrillerColor" style="font-size: 20px; color: #E64A17;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" value="Western" class="mdl-checkbox__input genres" checked="">Western
+                                <span class="mdl-checkbox__label" id="westernColor" style="font-size: 20px; color: #455A63;">&#9679;&nbsp;&nbsp;</span>
+                            </label><br/>
+                        </div>
+                      
+                    </div>
+                  </div>
 
-    <div  style="width: 85%;">
-    <div id="svganchor" class="graph centered" data-intro="Hover over the dots to see information about each movie" data-step='1'>
+                
+
+            </div>
+
+            <div class="col-10"> 
+                <!-- Row containing main plot  -->
+                <div class="row mb-2">                   
+                        
+                    <div class="card border-secondary">
+                        <!-- <div class="card-header">Header</div> -->
+                        <div class="card-body">
+                          <h5 class="card-title">Movie Timeline</h5>
+                            
+                            <!-- Main plot row -->
+                            <div class="row justify-content-center">   
+                                <div class="col-12">
+                                    <div id="svganchor" data-intro="This is the main plot, each circle represents a movie. The other plots will display relevant information when you click on a circle. Hover over over the circles to see more information." data-step='1'></div>
+                                </div>                
+                            </div>
+
+                            <!-- Year text row -->
+                            <div class="row justify-content-center mt-3">
+                                <div class="col-1">
+                                    <div data-intro="Here you can see the year the movies where released in." data-step='3'>
+                                        <strong><span id="yearTag">2022</span></strong>
+                                    </div>                    
+                                </div>
+                            </div>
+
+                            <!-- Silder row -->
+                            <div class="row justify-content-center pl-3 pr-20">
+                                <div class="col-12">                   
+                                    <div class="slidecontainer" data-intro="Use the slider to move across time." data-step='4'>
+                                        <input type="range" min="1920" max="2021" value="1920" class="slider" id="myRange">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                      </div>
+
+                </div>  
+                
+                <!-- Row containing the three smaller plots -->
+                <div class="row">
+                    <div class="col">
+
+                        <div class="card border-secondary"> 
+                            <div class="card-body">
+                                <h5 class="card-title">Director information</h5>
+                                <!-- Director info of selected movie (Maiju) -->
+                                <div id="director-plot" data-intro="Quantity of movies made by the director of the selected movie by year. Hover over each bar for more information." data-step='5'></div>
+                            </div>
+                          </div>
+
+                    </div>
+                    <div class="col">
+
+                        <div class="card border-secondary">
+                            <div class="card-body">
+                                <h5 class="card-title">Stars featured in film</h5>
+                                <!-- Stars in selected movie (Maiju) -->
+                                <div id="stars-plot" data-intro="Names of the main actors who star in the selected movie." data-step='6'></div>
+                            </div>
+                          </div>
+
+                    </div>
+                    <div class="col">
+                        
+                        <div class="card border-secondary">
+                            <div class="card-body">
+                                <h5 class="card-title">Gross income by director</h5>                                
+                                <div id="income-plot" data-intro="Gross income of other movies made by the selected director. Hover over each bar for more information." data-step='7'></div>
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- END main container -->
     </div>
-
-    <div class="centered" data-intro="Here you can see the year the movies where released in" data-step='3'>
-        <strong><span id="yearTag" style="position:relative; top: 3px">2022</span></strong>
-        </div>
-    
-        <div class="slidecontainer" data-intro="Use the slider to move across time" data-step='4'>
-            <input type="range" width="100%" min="1920" max="2021" value="1920" class="slider" id="myRange">
-        </div>
-
-    </div> 
-
-  <!--  <div style="height: 100px; width: 80%; background-color: #D81B60;">Hola</div> -->
-    
-
-</div>
-
-    <div style="height: 500px; width: 100%; background-color: blue; text-align: center;">
-		<!-- Container for graphs that react to selected movie -->
-	    <div id="linked-graphs" >
-		</div>
-    </div>
-
 
 </div>
     <!-- Modal Fullscreen -->
@@ -122,18 +198,32 @@
         </div>
     </div>
 
+    <div id="loading">
+        <!-- <img id="loading-image" src="Fidget-spinner.gif" alt="Loading..." /> -->
+        <figure id="loading-image">
+            <img src="Fidget-spinner.gif">
+            <figcaption><strong>Loading, please wait...</strong></figcaption>
+        </figure>
+    </div>  
+
 </body>
 
-<script src="https://d3js.org/d3.v5.min.js"></script>
+
 <!-- Separate code files included for linked graphs -->
 <script src="director-plot.js"></script>
 <script src="star-plot.js"></script>
+<script src="income-plot.js"></script>
 <script src="beeswarm.js"></script>
 <script>
     var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {})
     myModal.show()
 </script>
 <script>
+
+    window.onload = function(){ 
+        document.getElementById("loading").style.display = "none"
+     }
+
     function myFunction() {
         introJs().start();
     }
