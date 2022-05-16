@@ -1,6 +1,6 @@
 //Main code taken from: Tia Gottlieb - https://morioh.com/p/86a515eb6629 
-let height = 250;
-let width = 1300;
+let height = 300;
+let width = 1170;
 let margin = ({top: 0, right: 40, bottom: 34, left: 40});
 
 // Data structure describing chart scales
@@ -68,7 +68,8 @@ let tooltip = d3.select("#svganchor").append("div")
 let contador=0;
 
 //LUIS: you can change this later if you want to see all the movies, the short csv file is just faster to load for developing
-d3.tsv('http://localhost:3000/imdb_top_1000_clean.tsv').then(function (data) {
+// d3.tsv('https://imdb-hti500.surge.sh//imdb_top_1000_clean.tsv').then(function (data) {
+   d3.tsv('http://localhost:3000//imdb_top_1000_clean.tsv').then(function (data) {
 // d3.csv('http://localhost:3000/imdb_top_1000 - SHORT.csv').then(function (data) {
 
     let dataSet = data;
@@ -174,15 +175,22 @@ d3.tsv('http://localhost:3000/imdb_top_1000_clean.tsv').then(function (data) {
  
         // Show tooltip when hovering over circle (data for respective movie)
         d3.selectAll(".movies").on("mousemove", function(d) {
-            tooltip.html(`Movie: <strong>${d.Series_Title}</strong><br>
-                          Score: 
-                          <strong>${d3.format(",")(d[chartState.measure])}</strong><br>
-                          Year: <strong>${d.Released_Year}</strong><br>
+            tooltip.html(`
+                          <table style="width:100%">  
+                          <tr>
+                          <td style="width:30%">
                           <img src='${d.Poster_Link}'>
-
+                          </td>
+                          <td style="width:70%">
+                          Movie: <strong>${d.Series_Title}</strong> <br/>
+                          Score: <strong>${d3.format(",")(d[chartState.measure])}</strong> <br/>
+                          Year: <strong>${d.Released_Year}</strong> <br/>
+                          </td>
+                         </tr>  
+                          </table>
                           `)
-                .style('top', d3.event.pageY - 12 + 'px')
-                .style('left', d3.event.pageX + 25 + 'px')
+                .style('top', 0 + 'px')
+                .style('left', d3.event.pageX - 250 + 'px')
                 .style("opacity", 0.9);
 
             xLine.attr("x1", d3.select(this).attr("cx"))
